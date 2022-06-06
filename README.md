@@ -4,7 +4,10 @@ This repository provides a reference implementation of the model in the followin
 
 > PARSRec: Explainable Personalized Attention-fused Recurrent Sequential Recommendation Using Session Partial Actions
 > Ehsan Gholami, Mohammad Motamedi, Ashwin Aravindakshan 
-> 2022. %link here
+> 2022.
+>  
+> %link here
+> ...
 
 This code, provides tools to 
 
