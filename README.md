@@ -28,7 +28,8 @@ The emerging meta- and multi-verse landscape is yet another step towards the mor
 
 ## Architecture Image
 
-...
+
+<img src="https://user-images.githubusercontent.com/17379116/172081336-f1d4372d-edee-4fe8-800c-956850e10c8d.jpg" width="400">
 
 
 
