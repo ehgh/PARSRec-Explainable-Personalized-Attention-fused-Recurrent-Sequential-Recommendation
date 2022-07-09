@@ -1,0 +1,21 @@
+python3 PARSRec.py \
+--data-directory 'data' \
+--output-directory 'output' \
+--dataset 'synthetic' \
+--loss-function 'cce' \
+--train-batch-size=256 \
+--cpu-count 10 \
+--clip-grad-threshold 30 \
+--nepochs 50 \
+--save-freq 10 \
+--plot-freq 5 \
+--emb-dims 128-128 \
+--feature-sizes 1024-2002 \
+--num-recoms=10 \
+--dropout-rate 0.1 \
+--save-best-model \
+--num-attn-blocks 1 \
+--num-att-heads 2 \
+--sample-size-inference 99 \
+--sampling \
+--convert-dataset2binary
