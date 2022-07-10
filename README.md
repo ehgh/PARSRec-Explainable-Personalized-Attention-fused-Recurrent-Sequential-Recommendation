@@ -13,7 +13,7 @@ This code, provides tools to:
 2. Generate Dataset and Dataloader for *any dataset with specified file format*
 3. Train and evaluate PARSRec model on the dataset
 
-For inqueries please contact Ehsan Gholami (contact: egholami@ucdavis.edu). Please feel free to open an issue if an issue is detected.
+For inqueries please contact Ehsan Gholami (contact: egholami@ucdavis.edu). Please feel free to file an issue if an issue is detected.
 
 ## Citing
 
