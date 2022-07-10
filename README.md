@@ -71,6 +71,12 @@ The dtype of your content for dataset generator. Always use "object" for "sessio
 
 And finally, set the flag ```--convert-dataset2binary``` on in ```PARSRec.sh``` file and run the ```./PARSRec.sh``` in terminal. You only need to activate it once. After a single run, the binary files are generated and saved in folder 'data' and you can deactivate the flag for next runs.
 
+#### Output image 'output' folder
+
+This is output for sample synthetic dataset of 1024 users and 100 sessions per user:
+
+<img src="output/perf_loss.png" width="400">
+
 ## Abstract
 
 The emerging meta- and multi-verse landscape is yet another step towards the more prevalent use of already ubiquitous online markets. In such markets, recommender systems play critical roles by offering items of interest to the users, thereby narrowing down a vast search space that comprises hundreds of thousands of products. Recommender systems are usually designed to learn common user behaviors and rely on them for inference. This approach, while effective, is oblivious to subtle idiosyncrasies that differentiate humans from each other. Focusing on this observation, we propose an architecture that relies on common patterns as well as individual behaviors to tailor its recommendations for each person. Simulations under a controlled environment show that our proposed model learns interpretable personalized user behaviors. Our empirical results on Nielsen Consumer Panel dataset indicate that the proposed approach achieves up to 27.9% performance improvement compared to the state-of-the-art.
