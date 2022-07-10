@@ -73,7 +73,7 @@ And finally, set the flag ```--convert-dataset2binary``` on in ```PARSRec.sh``` 
 
 #### Output image 'output' folder
 
-This is output for sample synthetic dataset of 1024 users and 100 sessions per user:
+This is output for sample synthetic dataset of 1024 users, 100 sessions per user, and 2000 items:
 
 <img src="output/perf_loss.png" width="400">
 
