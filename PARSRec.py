@@ -736,7 +736,7 @@ def parse_args():
     parser.add_argument("--load-model-path", type=str, default="best_model.tar")
     #directories
     parser.add_argument('--data-directory', default='data')
-    parser.add_argument('--output-directory', default='out/nielsen_out')
+    parser.add_argument('--output-directory', default='output')
     
     return parser.parse_args()
 
