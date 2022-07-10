@@ -41,7 +41,7 @@ Create two files under folder 'data/' with following format:
 > 
 > \<dataset value in PARSRec.sh\>_columns_dtype.json
 
-format of '\<dataset value in PARSRec.sh\>.txt file':
+#### Format of '\<dataset value in PARSRec.sh\>.txt' file:
 
 Header line:
     
@@ -57,7 +57,7 @@ NOTE: item_ids must start from 2, (0 and 1 are reserved for SOB and EOB, respect
 
 Please refer to 'data/synthetic.txt' for example file.
 
-Content of '\<dataset value in PARSRec.sh\>_columns_dtype.json':
+#### Content of '\<dataset value in PARSRec.sh\>_columns_dtype.json' file:
 
 The dtype of your content for dataset generator. Always use "object" for "session_items" and "history". The rest can be user defined dtypes.
 
