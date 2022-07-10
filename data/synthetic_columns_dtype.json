@@ -1,0 +1,7 @@
+{
+    "session_length":"int16",
+    "session_items":"object", 
+    "history":"object", 
+    "time":"int", 
+    "user_id":"int32"
+}
