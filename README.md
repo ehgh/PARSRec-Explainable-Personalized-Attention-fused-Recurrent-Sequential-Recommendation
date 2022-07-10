@@ -13,12 +13,18 @@ This code, provides tools to:
 2. Generate Dataset and Dataloader for *any dataset with specified file format*
 3. Train and evaluate PARSRec model on the dataset
 
-For inqueries please contact Ehsan Gholami (contact: egholami@ucdavis.edu).
+For inqueries please contact Ehsan Gholami (contact: egholami@ucdavis.edu). Please feel free to open an issue if an issue is detected.
 
 ## Citing
 
 If you find this code/data useful for your research, please consider citing the following paper:
 > Ehsan Gholami, Mohammad Motamedi, and Ashwin Aravindakshan. 2022. PARSRec: Explainable Personalized Attention-fused Recurrent Sequential Recommendation Using Session Partial Actions. In Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD ’22),  August 14–18, 2022, Washington, DC, USA. ACM, New York, NY, USA, 11 pages. https://doi.org/10.1145/3534678.3539432
+
+## Architecture Image
+
+
+<img src="https://user-images.githubusercontent.com/17379116/172081336-f1d4372d-edee-4fe8-800c-956850e10c8d.jpg" width="400">
+
 
 ## Basic Usage
 To generate synthetic dataset, set the arguments in the 'synthetic.sh' file and run this command in terminal:
@@ -80,11 +86,4 @@ This is output for sample synthetic dataset of 1024 users, 100 sessions per user
 ## Abstract
 
 The emerging meta- and multi-verse landscape is yet another step towards the more prevalent use of already ubiquitous online markets. In such markets, recommender systems play critical roles by offering items of interest to the users, thereby narrowing down a vast search space that comprises hundreds of thousands of products. Recommender systems are usually designed to learn common user behaviors and rely on them for inference. This approach, while effective, is oblivious to subtle idiosyncrasies that differentiate humans from each other. Focusing on this observation, we propose an architecture that relies on common patterns as well as individual behaviors to tailor its recommendations for each person. Simulations under a controlled environment show that our proposed model learns interpretable personalized user behaviors. Our empirical results on Nielsen Consumer Panel dataset indicate that the proposed approach achieves up to 27.9% performance improvement compared to the state-of-the-art.
-
-## Architecture Image
-
-
-<img src="https://user-images.githubusercontent.com/17379116/172081336-f1d4372d-edee-4fe8-800c-956850e10c8d.jpg" width="400">
-
-
 
