@@ -33,13 +33,13 @@ To train PARSRec on dataset, set the arguments in the 'PARSRec.sh' file and run 
 
 The output files will be saved in the folder 'output/' in default mode
 
-Dataset file format:
+#### Dataset file format:
 
 Create two files under folder 'data/' with following format:
 
-\<dataset value in PARSRec.sh\>.txt
-
-\<dataset value in PARSRec.sh\>_columns_dtype.json
+> \<dataset value in PARSRec.sh\>.txt
+> 
+> \<dataset value in PARSRec.sh\>_columns_dtype.json
 
 format of '\<dataset value in PARSRec.sh\>.txt file':
 
