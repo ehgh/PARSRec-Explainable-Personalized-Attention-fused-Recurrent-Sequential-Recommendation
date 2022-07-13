@@ -1,4 +1,4 @@
-python3 session_generation.py \
+python3 synthetic_data_generator.py \
 -data-directory 'data' \
 -I 1024 \
 -T 100 \
@@ -8,5 +8,5 @@ python3 session_generation.py \
 -min-session-len 3 \
 -max-session-len 10 \
 -hist-length 80 \
--I-multiplier 1 \
+-batch-size 1 \
 -cpu-count 10

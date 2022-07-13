@@ -202,11 +202,11 @@ def data_generator():
   print('catagories selected' + '.'*50)
   
   #break down user generation due to memory limit
-  assert (args.I%args.I_multiplier==0), 'number of users must be dividable by I_multiplier'
-  args.I //= args.I_multiplier
+  assert (args.I%args.batch_size==0), 'number of users, I, must be dividable by batch_size'
+  args.I //= args.batch_size
   
-  for i_multiplier in range(args.I_multiplier):
-    print('user partition {}'.format(i_multiplier))
+  for batch in range(args.batch_size):
+    print('user partition {}'.format(batch))
 
     ##### session sizes #####
     #generate list of session sizes from a fitted weibull distribution
@@ -234,7 +234,7 @@ def data_generator():
         #pick top categories upto session size
         session_sz = sessions_sz[t * args.I + i]
         #pick the product with highest utility in chosen categories
-        for category in np.argpartition(-y[i_multiplier * args.I + i, t, :], session_sz)[:session_sz]:
+        for category in np.argpartition(-y[batch * args.I + i, t, :], session_sz)[:session_sz]:
             idx = np.argmax(utility_c_ijt[category, i, :, t])
             j = category * args.Jc + idx + 2 #+2 to account for SOB(0) and EOB(1)
             session.append(j)
@@ -243,7 +243,7 @@ def data_generator():
         random.shuffle(session)
 
         #save to file
-        synthetic_file.write(','.join(map(str, [i_multiplier*args.I+i, t, len(session)] + session)) + '\n')
+        synthetic_file.write(','.join(map(str, [batch*args.I+i, t, len(session)] + session)) + '\n')
           
   print('data generation time:{}'.format(timer() - start))
   synthetic_file.close()
@@ -253,12 +253,12 @@ def main(**kwargs):
   parser = argparse.ArgumentParser()
   parser.add_argument("-I", type = int, help = "Number of consumers", 
                       default = 100)
-  parser.add_argument("-T", type = int, help = "Number of times", 
+  parser.add_argument("-T", type = int, help = "Number of sessions per consumer (time)", 
                       default = 50)
   parser.add_argument("-C", type = int, help = "Number of categories",
                       default = 20)
   parser.add_argument("-Jc", type = int, 
-                      help = "Number of products per categories",
+                      help = "Number of products per category",
                       default = 15)
   parser.add_argument("-Gamma0", type = float, 
                       help = "Category purchase incidence base utility",
@@ -278,18 +278,18 @@ def main(**kwargs):
   parser.add_argument("-max-session-len", type = int, 
                       help = "maximum session size",
                       default = 11)
-  parser.add_argument("-I-multiplier", type = int, 
-                      help = "batch-size",
+  parser.add_argument("-batch-size", type = int, 
+                      help = "consumer minibatch size (for parallel processing)",
                       default = 1)
   parser.add_argument("-hist-length", type = int, 
-                      help = "number of previous sessions to include in user historical transactions",
+                      help = "number of previous sessions to include in the user's historical actions",
                       default = 1)
-  parser.add_argument("-numpy-rand-seed", type=int, default=123)
+  parser.add_argument("-numpy-rand-seed", help = "random seed for reproducibility", type=int, default=123)
   parser.add_argument("-cpu-count", type=int, 
-                      help = "number of cpu cores to use for extracting user history",
+                      help = "number of cpu cores to use in parallel processing (used for extracting user history)",
                       default=1)
   parser.add_argument("-data-directory", type = str, 
-                      help = "directory to store data",
+                      help = "directory to store the data",
                       default = 'data')
 
   global args
