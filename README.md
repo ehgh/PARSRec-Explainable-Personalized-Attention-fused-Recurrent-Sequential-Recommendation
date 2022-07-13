@@ -10,7 +10,7 @@ This repository provides a reference implementation of the model and data genera
 This code provides tools to:
 1. Generate the synthetic dataset described in the paper
 2. Generate binary Dataset and Dataloader for *any dataset with specified file format*
-3. Train and evaluate the PARSRec model on the dataset
+3. Train and evaluate the PARSRec model on *any dataset*
 
 For inquiries, don't hesitate to get in touch with Ehsan Gholami (contact: egholami@ucdavis.edu). Please feel free to file an issue if one is detected.
 
@@ -27,11 +27,11 @@ If you find this code/data useful for your research, please consider citing the 
 
 ## Basic Usage
 ### 1. Generate Synthetic data
-To generate the synthetic dataset, choose the argument values in the *'synthetic_data_generator.sh'* file and run this command in the terminal:
+To generate the synthetic dataset, choose the argument values in the *"synthetic_data_generator.sh"* file and run this command in the terminal:
 
     ./synthetic_data_generator.sh
 
-This will generaet the synthetic dataset in the folder 'data/' in default mode. You can set the data directory via *'-data-directory'* argument.
+This will generate the synthetic dataset in the default mode folder *data/*. You can set the data directory via *'-data-directory'* argument.
 
 To get the list of parameters and definitions, run this line in the terminal:
 
