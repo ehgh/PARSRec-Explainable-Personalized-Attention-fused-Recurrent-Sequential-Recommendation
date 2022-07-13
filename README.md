@@ -91,7 +91,7 @@ The data type of your content for binary dataset generator. Always use *"object"
 
 And finally, set the flag ```--convert-dataset2binary``` to *True* in the ```PARSRec.sh``` file and run the ```./PARSRec.sh``` in the terminal. You only need to activate it once. After a single run, the binary files are generated and saved to the folder *"data"*, and you can deactivate the ```--convert-dataset2binary``` flag in the next runs.
 
-#### Output image 'output' folder
+#### Output image in the 'output' folder
 
 This is output for sample synthetic dataset of 1024 users, 100 sessions per user, and 2000 items (in *"output"* folder):
 
