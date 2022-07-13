@@ -1,19 +1,18 @@
 # PARSRec: Explainable Personalized Attention-fused Recurrent Sequential Recommendation Using Session Partial Actions
 
-This repository provides a reference implementation of the model in the following paper:
+This repository provides a reference implementation of the model and data generation of the following paper:
 
 > PARSRec: Explainable Personalized Attention-fused Recurrent Sequential Recommendation Using Session Partial Actions
-> Ehsan Gholami, Mohammad Motamedi, Ashwin Aravindakshan 
-> 2022.
+> Ehsan Gholami, Mohammad Motamedi, Ashwin Aravindakshan, 2022.
 >  
 > %Open access link to the paper coming soon
 
-This code, provides tools to:
-1. Generate synthetic dataset described in the paper
-2. Generate Dataset and Dataloader for *any dataset with specified file format*
-3. Train and evaluate PARSRec model on the dataset
+This code provides tools to:
+1. Generate the synthetic dataset described in the paper
+2. Generate binary Dataset and Dataloader for *any dataset with specified file format*
+3. Train and evaluate the PARSRec model on the dataset
 
-For inqueries please contact Ehsan Gholami (contact: egholami@ucdavis.edu). Please feel free to file an issue if an issue is detected.
+For inquiries, don't hesitate to get in touch with Ehsan Gholami (contact: egholami@ucdavis.edu). Please feel free to file an issue if one is detected.
 
 ## Citing
 
@@ -27,11 +26,18 @@ If you find this code/data useful for your research, please consider citing the 
 
 
 ## Basic Usage
-To generate synthetic dataset, set the arguments in the 'synthetic.sh' file and run this command in terminal:
+### 1. Generate Synthetic data
+To generate the synthetic dataset, choose the argument values in the *'synthetic_data_generator.sh'* file and run this command in the terminal:
 
-    ./synthetic.sh
+    ./synthetic_data_generator.sh
 
-The dataset will be generated in the folder 'data/' in default mode
+This will generaet the synthetic dataset in the folder 'data/' in default mode. You can set the data directory via *'-data-directory'* argument.
+
+To get the list of parameters and definitions, run this line in the terminal:
+
+python3 synthetic_data_generator.py --help
+
+### 2. Train PARSRec
 
 To train PARSRec on dataset, set the arguments in the 'PARSRec.sh' file and run this command in terminal:
 
