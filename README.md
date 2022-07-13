@@ -69,7 +69,7 @@ Where *\<dataset name in PARSRec.sh\>* is the dataset name you set for argument 
     
 - Data lines (one user-session per line):
 
-#e.g. instance (user_id:1 ,time:5 ,session_length:6,session_items:3,7,4,8,12,34) is:
+#e.g. line for (user_id: 1 ,time: 5 ,session_length: 6,session_items: 3,7,4,8,12,34) is:
 
     1,5,6,3,7,4,8,12,34
     
