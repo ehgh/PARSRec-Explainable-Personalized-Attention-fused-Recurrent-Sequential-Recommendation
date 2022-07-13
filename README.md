@@ -31,7 +31,7 @@ To generate the synthetic dataset, choose the argument values in the *"synthetic
 
     ./synthetic_data_generator.sh
 
-This will generate the synthetic dataset in the default mode folder *"data/"*. You can set the data directory via *"-data-directory"* argument.
+This will generate the synthetic dataset in the default mode folder *"data/"*. You can set the data directory via the *"-data-directory"* argument.
 
 To get the list of parameters and their definitions, run this line in the terminal:
 
@@ -43,39 +43,43 @@ If you need to make the *"synthetic_data_generator.sh"* file executable on your 
 
 ### 2. Train PARSRec
 
-To train PARSRec on dataset, set the arguments in the 'PARSRec.sh' file and run this command in terminal:
+To train PARSRec on a dataset, set the arguments in the *"PARSRec.sh"* file and run this command in the terminal:
 
     ./PARSRec.sh
 
-The output files will be saved in the folder 'output/' in default mode
+The code saves the output files in the default mode folder *"output/"*.
+
+#### How to train on arbitrary data:
 
 #### Dataset file format:
 
-Create two files under folder 'data/' with following format:
+Create two files in folder *"data/"* with following names:
 
-> \<dataset value in PARSRec.sh\>.txt
+> \<dataset name in PARSRec.sh\>.txt
 > 
-> \<dataset value in PARSRec.sh\>_columns_dtype.json
+> \<dataset name in PARSRec.sh\>_columns_dtype.json
 
-#### Format of '\<dataset value in PARSRec.sh\>.txt' file:
+Where *\<dataset name in PARSRec.sh\>* is the dataset name you set for argument *"dataset"* in *"PARSRec.sh"* file (default is *"synthetic"*)
 
-Header line:
+##### Format of '\<dataset name in PARSRec.sh\>.txt' file:
+
+- Header line:
     
     user_id,time,session_length,session_items
     
-Data lines (one line per session-user):
+- Data lines (one user-session per line):
 
 #e.g. instance (user_id:1 ,time:5 ,session_length:6,session_items:3,7,4,8,12,34) is:
 
     1,5,6,3,7,4,8,12,34
     
-NOTE: item_ids must start from 2, (0 and 1 are reserved for SOB and EOB, respectively)
+**NOTE**: item_ids must start from 2 (0 and 1 are reserved for *SOB* and *EOB*, respectively)
 
-Please refer to 'data/synthetic.txt' for example file.
+Please refer to 'data/synthetic.txt' for an example file format.
 
-#### Content of '\<dataset value in PARSRec.sh\>_columns_dtype.json' file:
+#### Content of '\<dataset name in PARSRec.sh\>_columns_dtype.json' file:
 
-The dtype of your content for dataset generator. Always use "object" for "session_items" and "history". The rest can be user defined dtypes.
+The data type of your content for binary dataset generator. Always use *"object"* for *"session_items"* and *"history"*. The rest can be user-defined dtypes.
 
     {
         "session_length":"int16",
@@ -85,11 +89,11 @@ The dtype of your content for dataset generator. Always use "object" for "sessio
         "user_id":"int32"
     }
 
-And finally, set the flag ```--convert-dataset2binary``` on in ```PARSRec.sh``` file and run the ```./PARSRec.sh``` in terminal. You only need to activate it once. After a single run, the binary files are generated and saved in folder 'data' and you can deactivate the flag for next runs.
+And finally, set the flag ```--convert-dataset2binary``` to *True* in the ```PARSRec.sh``` file and run the ```./PARSRec.sh``` in the terminal. You only need to activate it once. After a single run, the binary files are generated and saved to the folder *"data"*, and you can deactivate the ```--convert-dataset2binary``` flag in the next runs.
 
 #### Output image 'output' folder
 
-This is output for sample synthetic dataset of 1024 users, 100 sessions per user, and 2000 items:
+This is output for sample synthetic dataset of 1024 users, 100 sessions per user, and 2000 items (in *"output"* folder):
 
 <img src="output/perf_loss.png" width="400">
 
