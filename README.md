@@ -31,11 +31,15 @@ To generate the synthetic dataset, choose the argument values in the *"synthetic
 
     ./synthetic_data_generator.sh
 
-This will generate the synthetic dataset in the default mode folder *data/*. You can set the data directory via *'-data-directory'* argument.
+This will generate the synthetic dataset in the default mode folder *"data/"*. You can set the data directory via *"-data-directory"* argument.
 
-To get the list of parameters and definitions, run this line in the terminal:
+To get the list of parameters and their definitions, run this line in the terminal:
 
-python3 synthetic_data_generator.py --help
+    python3 synthetic_data_generator.py --help
+    
+If you need to make the *"synthetic_data_generator.sh"* file executable on your device, in terminal run:
+ 
+    chmod +x synthetic_data_generator.sh
 
 ### 2. Train PARSRec
 
