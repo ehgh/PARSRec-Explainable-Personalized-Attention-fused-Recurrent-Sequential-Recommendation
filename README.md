@@ -49,6 +49,14 @@ To train PARSRec on a dataset, set the arguments in the *"PARSRec.sh"* file and 
 
 The code saves the output files in the default mode folder *"output/"*.
 
+To get the list of parameters and their definitions, run this line in the terminal:
+
+    python3 PARSRec.py --help
+    
+If you need to make the *"PARSRec.sh"* file executable on your device, in terminal run:
+ 
+    chmod +x PARSRec.sh
+
 #### How to train on arbitrary data:
 
 #### Dataset file format:
