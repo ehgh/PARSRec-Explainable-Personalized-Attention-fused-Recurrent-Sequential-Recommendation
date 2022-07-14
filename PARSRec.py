@@ -534,7 +534,7 @@ def validate_test(args,
                     'optimizer_sparse_state_dict': optimizer_parsrec_sparse.state_dict(),
                     'best_perf': val_best_perf,
                     'train_loss': train_loss_epochs[epoch]},
-                    os.path.join(args.output_directory, args.save_model_path))
+                    os.path.join(args.output_directory, args.save_model_filename))
     #loss and performance
     sess_prec_validation_epoch.append(sess_prec)
     HR_validation_epoch.append(HR)
@@ -689,54 +689,53 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Train PARSRec")
 
     # model related parameters
-    parser.add_argument("--num-recoms", type=int, default=1)
-    parser.add_argument("--dropout-rate", type=float, default=0.0)
-    parser.add_argument("--feature-sizes", type=dash_separated_ints, default="128")
-    parser.add_argument("--num-attn-blocks", type=int, default=1)
-    parser.add_argument("--num-att-heads", type=int, default=1)
-    parser.add_argument("--emb-dims", type=dash_separated_ints, default="0")
+    parser.add_argument("--num-recoms", type=int, default=1, help="number of recommendations for each item")
+    parser.add_argument("--dropout-rate", type=float, default=0.0, help="dropout rate")
+    parser.add_argument("--feature-sizes", type=dash_separated_ints, default="128", help="categorical features dictionary size")
+    parser.add_argument("--num-attn-blocks", type=int, default=1, help="number of attention blocks")
+    parser.add_argument("--num-att-heads", type=int, default=1, help="number of attention heads")
+    parser.add_argument("--emb-dims", type=dash_separated_ints, default="0", help="embedding dimensions")
     # activations and loss
-    parser.add_argument("--loss-function", type=str, choices=["mse", "bce", "bcewl", "wbce", "cce", "wcce"], default="cce")
+    parser.add_argument("--loss-function", type=str, choices=["mse", "bce", "bcewl", "wbce", "cce", "wcce"], default="cce", help="loss function")
     #distributed data parallel
-    parser.add_argument("--cpu-count", type=int, default=1)
-    parser.add_argument("--distributed", action="store_true", default=False)
-    parser.add_argument("--masterport", type=str, default="1235")
+    parser.add_argument("--cpu-count", type=int, default=1, help="number of cpu cores in parallel processing")
+    parser.add_argument("--distributed", action="store_true", default=False, help="parallel processing flag - default False")
+    parser.add_argument("--masterport", type=str, default="1235", help="port number for parallel processing - useful when running more than one training simultaneously")
     # data
-    parser.add_argument("--history-len", type=int, default=sys.maxsize)
-    parser.add_argument("--num-batches", type=int, default=0)
-    parser.add_argument("--dataset", type=str, default="synthetic")    
-    parser.add_argument("--dataset-filename", type=str, default="synthetic.txt")    
-    parser.add_argument("--convert-dataset2binary", action="store_true", default=False)
+    parser.add_argument("--history-len", type=int, default=sys.maxsize, help="number previous sessions to use as user's historical actions")
+    parser.add_argument("--num-batches", type=int, default=0, help="number of minibatches")
+    parser.add_argument("--dataset", type=str, default="synthetic", help="name of dataset - used to read binary dataset filenames")    
+    parser.add_argument("--dataset-filename", type=str, default="synthetic.txt", help="name of dataset filename")    
+    parser.add_argument("--convert-dataset2binary", action="store_true", default=False, help="convert text dataset file to binary dataset files - default False")
     # training
-    parser.add_argument("--numpy-rand-seed", type=int, default=123)
-    parser.add_argument("--train-batch-size", type=int, default=1)
-    parser.add_argument("--nepochs", type=int, default=100)
-    parser.add_argument("--optimizer", type=str, default="adam")
-    parser.add_argument("--optimizer-sparse", type=str, default="sparseadam")
-    parser.add_argument("--clip-grad-threshold", type=float, default=20.0)
-    parser.add_argument("--need-weights", action="store_true", default=False)
-    parser.add_argument('--split', choices=['train', 'test', 'val'], default='train')
+    parser.add_argument("--numpy-rand-seed", type=int, default=123, help="seed for reproducibility")
+    parser.add_argument("--train-batch-size", type=int, default=1, help="training minibatch size")
+    parser.add_argument("--nepochs", type=int, default=100, help="maximum number of epochs")
+    parser.add_argument("--optimizer", type=str, default="adam", help="optimizer for dense layers")
+    parser.add_argument("--optimizer-sparse", type=str, default="sparseadam", help="optimizer for embedding layers")
+    parser.add_argument("--clip-grad-threshold", type=float, default=20.0, help="RNN gradient clipping threshold")
+    parser.add_argument("--need-weights", action="store_true", default=False, help="return attention weights - default False")
+    parser.add_argument('--split', choices=['train', 'test', 'val'], default='train', help="dataset partition - options: train/test/val")
     # inference
-    parser.add_argument("--sampling", action="store_true", default=False)
-    parser.add_argument("--inference-only", action="store_true", default=False)
-    parser.add_argument("--sample-size-inference", type=int, default=100)
+    parser.add_argument("--sampling", action="store_true", default=False, help="flag for sampling in evaluation phase - deafult False")
+    parser.add_argument("--sample-size-inference", type=int, default=100, help="if sampling flag is set, number of (positive+negative) items to sample for evaluation")
+    parser.add_argument("--inference-only", action="store_true", default=False, help="infer only flag - default False")
     # gpu
-    parser.add_argument("--use-gpu", action="store_true", default=False)
+    parser.add_argument("--use-gpu", action="store_true", default=False, help="use GPU flag - default CPU")
     #print options
-    parser.add_argument("--print-precision", type=int, default=2)
+    parser.add_argument("--print-precision", type=int, default=2, help="print floating point precision - useful for debugging")
     # debugging and profiling
-    parser.add_argument("--save-freq", type=int, default=1)
-    parser.add_argument("--save-best-model", action="store_true", default=False)
-    parser.add_argument("--plot-freq", type=int, default=1)
-    parser.add_argument("--debug-mode", action="store_true", default=False)
-    parser.add_argument("--plot-compute-graph", action="store_true", default=False)
+    parser.add_argument("--save-best-model", action="store_true", default=True, help="flag to save best model each epoch - default True")
+    parser.add_argument("--plot-freq", type=int, default=1, help="plot loss and performance every n epoch")
+    parser.add_argument("--debug-mode", action="store_true", default=False, help="debug mode flag - default False")
+    parser.add_argument("--plot-compute-graph", action="store_true", default=False, help="plot compute graph - useful for debugging")
     # store/load model
-    parser.add_argument("--load-model", action="store_true", default=False)
-    parser.add_argument("--save-model-path", type=str, default="best_model.tar")
-    parser.add_argument("--load-model-path", type=str, default="best_model.tar")
+    parser.add_argument("--load-model", action="store_true", default=False, help="load a pre-trained model")
+    parser.add_argument("--save-model-filename", type=str, default="best_model.tar", help="filename to save best model")
+    parser.add_argument("--load-model-filename", type=str, default="best_model.tar", help="")
     #directories
-    parser.add_argument('--data-directory', default='data')
-    parser.add_argument('--output-directory', default='output')
+    parser.add_argument('--data-directory', default='data', help="directory of data files")
+    parser.add_argument('--output-directory', default='output', help="directory to save output files")
     
     return parser.parse_args()
 
@@ -845,7 +844,7 @@ def run():
 
     #load previously trained model
     if args.load_model:
-        checkpoint = torch.load(os.path.join(args.output_directory, args.load_model_path))
+        checkpoint = torch.load(os.path.join(args.output_directory, args.load_model_filename))
         skip_upto_epoch = checkpoint['epoch'] + 1
         parsrec.load_state_dict(checkpoint['model_state_dict'])
         val_best_perf = checkpoint['best_perf']

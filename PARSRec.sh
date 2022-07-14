@@ -7,7 +7,6 @@ python3 PARSRec.py \
 --cpu-count 10 \
 --clip-grad-threshold 30 \
 --nepochs 50 \
---save-freq 10 \
 --plot-freq 5 \
 --emb-dims 128-128 \
 --feature-sizes 1024-2002 \
