@@ -5,7 +5,7 @@ This repository provides a reference implementation of the model and data genera
 > PARSRec: Explainable Personalized Attention-fused Recurrent Sequential Recommendation Using Session Partial Actions
 > Ehsan Gholami, Mohammad Motamedi, Ashwin Aravindakshan, 2022.
 >  
-> %Open access link to the paper coming soon
+> Open access link: https://dl.acm.org/doi/10.1145/3534678.3539432
 
 This code provides tools to:
 1. Generate the synthetic dataset described in the paper
