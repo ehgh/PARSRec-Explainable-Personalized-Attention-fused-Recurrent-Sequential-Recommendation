@@ -172,7 +172,7 @@ def select_categories():
   for omega in omegas:
     omega = omega[:args.C, :args.C]
     means = [args.Gamma0] * args.C
-    assert np.all(np.linalg.eigvals(omega) >= -0), 'eigen values must be all positive (semi-positive matrix). Eigen values:\n{}'.format(np.linalg.eigvals(Omega))
+    assert np.all(np.linalg.eigvals(omega) > -1e-15), 'eigen values must be all positive (semi-positive matrix). Eigen values:\n{}'.format(np.linalg.eigvals(omega))
     assert omega.shape[0] == omega.shape[1] and omega.shape[0] >= args.C, 'category covariance matrix must be square matrix and dimension at least the number of categories'
     z_ = np.random.multivariate_normal(mean = means, 
                                       cov = omega, size = (1*args.I//2, args.T),
